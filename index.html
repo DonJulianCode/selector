@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlaces de Acceso</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 18px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .link-card:nth-child(1) { animation-delay: 0.1s; }
+        .link-card:nth-child(2) { animation-delay: 0.2s; }
+        .link-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .link-card:active {
+            transform: translateY(-4px) scale(0.98);
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover .link-icon {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .link-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .link-description {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+
+        .arrow {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .link-card:hover .arrow {
+            transform: translateX(5px);
+            opacity: 1;
+        }
+
+        /* Iconos SVG */
+        .icon-calendar { color: #4CAF50; }
+        .icon-video { color: #2196F3; }
+        .icon-drive { color: #FF9800; }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .link-card {
+                padding: 15px;
+            }
+            
+            .link-title {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                max-width: 350px;
+            }
+            
+            .links-container {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                margin-bottom: 20px;
+            }
+                
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .link-card {
+                padding: 12px;
+                border-radius: 12px;
+            }
+            
+            .link-icon {
+                width: 32px;
+                height: 32px;
+                margin-bottom: 8px;
+                border-radius: 8px;
+            }
+            
+            .link-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+            
+            .link-title {
+                font-size: 1rem;
+                gap: 8px;
+                margin-bottom: 4px;
+            }
+            
+            .link-description {
+                font-size: 0.75rem;
+                line-height: 1.2;
+            }
+            
+            .arrow svg {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .container {
+                max-width: 300px;
+            }
+            
+            .links-container {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                max-width: 280px;
+            }
+            
+            .link-card {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .link-title {
+                font-size: 0.9rem;
+            }
+            
+            .link-description {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Efectos de partículas de fondo */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Enlaces de Acceso</h1>
+        </div>
+
+        <div class="links-container">
+            <a href="https://donjuliancode.github.io/mcalendar/" class="link-card">
+                <div class="link-title">
+                    <div class="link-icon icon-calendar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                        </svg>
+                    </div>
+                    Calendario
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="link-description">
+                    Accede al calendario para ver fechas importantes y horarios
+                </div>
+            </a>
+
+            <a href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_NTgwMzA1YWQtNmMxOC00ODViLWI1MWQtZGE5MmEwMzhhNTVk%40thread.v2/0?context=%7B%22Tid%22%3A%2246c5a504-a929-46ba-a42f-ef8d2f37ae61%22%2C%22Oid%22%3A%223b880eb0-f2bf-440b-80ab-54aa4fecc6bb%22%7D" class="link-card">
+                <div class="link-title">
+                    <div class="link-icon icon-video">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4zM14 13h-3v3H9v-3H6v-2h3V8h2v3h3v2z"/>
+                        </svg>
+                    </div>
+                    Videoconferencia
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="link-description">
+                    Únete a la reunión virtual en Microsoft Teams
+                </div>
+            </a>
+
+			<a href="https://kibernumacademy-my.sharepoint.com/:f:/g/personal/silvia_salinas_campuskibernum_cl/EisTD9uj3LZCjsQ23bpdFTwByQzNen3JKbQ6RzFoaPBptA?e=go7abd&web=1" class="link-card">
+                <div class="link-title">
+                    <div class="link-icon icon-drive">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                        </svg>
+                    </div>
+                    OneDrive
+                    <div class="arrow">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="link-description">
+                    Accede a los archivos y documentos del curso ML 2025
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Efecto de paralaje suave en las partículas
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.querySelectorAll('.particle');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed * 50;
+                const y = (mouseY - 0.5) * speed * 50;
+                
+                particle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Efecto de feedback visual al hacer clic
+        document.querySelectorAll('.link-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Efecto visual de confirmación
+                this.style.transform = 'translateY(-4px) scale(0.98)';
+                this.style.transition = 'all 0.1s ease';
+                
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                }, 100);
+            });
+        });
+
+        // Animación CSS adicional para efectos suaves
+        const style = document.createElement('style');
+        style.textContent = `
+            .link-card {
+                will-change: transform;
+            }
+            
+            .link-card:focus {
+                outline: 2px solid rgba(255, 255, 255, 0.5);
+                outline-offset: 4px;
+            }
+            
+            .link-card:focus:not(:focus-visible) {
+                outline: none;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
