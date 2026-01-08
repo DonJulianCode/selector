@@ -237,17 +237,6 @@ Las contribuciones son bienvenidas. Por favor:
 5. Abre un Pull Request
 
 ---
-
-## 📧 Contacto
-
-¿Preguntas o sugerencias? Contáctanos a través de:
-
-- 📧 Email: grupo72@aluralatam.com
-- 💬 Discord: Servidor Alura Latam
-- 🐦 Twitter: [@AluraLatam](https://twitter.com/aluralatam)
-
----
-
 <div align="center">
 
 **⭐ Si te gustó este proyecto, déjanos una estrella en GitHub ⭐**
